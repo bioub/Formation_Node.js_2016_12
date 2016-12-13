@@ -1,8 +1,8 @@
 /**
  * Création d'un bouton
- * @param {object} options - Les paramètres
+ * @param {object} [options={}] - Les paramètres
  * @param {string} options.value - La valeur (obligatoire)
- * @param {array} options.classes - Les classes
+ * @param {Array} options.classes - Les classes
  * @param {string} options.type - Le type
  *
  */

@@ -21,7 +21,7 @@ class Jeu {
 
     jouer() {
         if (this.essais.length) {
-            console.log('Vous avez déjà joué : ' + this.essais.join(', '))
+            console.log(`Vous avez déjà joué : ${this.essais.join(', ')}`)
         }
 
         rl.question(`Saisir un entier entre ${this.min} et ${this.max} : `, answer => {
