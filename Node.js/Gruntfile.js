@@ -2,17 +2,38 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-browserify');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-browserify');
 
     grunt.initConfig({
+        watch: {
+            scripts: {
+                files: ['Grunt/src/js/**/*.js'],
+                tasks: [
+                    'browserify:dist',
+                    'babel:dist',
+                    'uglify:dist'
+                ],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
+        uglify: {
+            dist: {
+                files: {
+                    'Grunt/dist/js/index-browser.js': 'Grunt/dist/js/index-browser.js'
+                }
+            }
+        },
         clean: {
             dist: ['Grunt/dist']
         },
         babel: {
             options: {
                 sourceMap: false,
-                minified: true,
                 presets: ['babel-preset-es2015']
             },
             dist: {
@@ -48,7 +69,8 @@ module.exports = function(grunt) {
         'clean:dist',
         'copy:dist',
         'browserify:dist',
-        'babel:dist'
+        'babel:dist',
+        'uglify:dist'
     ]);
 
 

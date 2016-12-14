@@ -23,3 +23,20 @@ console.log(createButton({
     classes: ['btn', 'btn-default'],
     value: 'Clic moi'
 }));
+
+/**
+ * Création d'un bouton
+ *
+ */
+const createButtonES6 = function ({value = 'Valider', classes = [], type = false} = {}) {
+    return `<button class="${classes.join(' ')}">${value}</button>`;
+};
+
+// <button type="submit" class="btn btn-default">Value</button>
+
+
+console.log(createButtonES6());
+console.log(createButtonES6({
+    classes: ['btn', 'btn-default'],
+    value: 'Clic moi'
+}));

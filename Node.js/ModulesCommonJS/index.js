@@ -1,4 +1,4 @@
-const MonBouton = require('./MonBouton');
+const MonBouton = require('./MonBouton').MonBouton;
 
 let myBtn = new MonBouton();
 myBtn.click();
