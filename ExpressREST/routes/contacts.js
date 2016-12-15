@@ -1,5 +1,5 @@
 const Router = require('express').Router;
-const Contact = require('../model/contact');
+const Contact = require('../model/contact-mongo');
 const bodyParser = require('body-parser');
 
 let router = new Router();
@@ -10,15 +10,11 @@ router.get('/', (req, res, next) => {
             return next(err);
         }
 
-        res.render('contacts/list', {contacts: contacts});
+        res.json(contacts)
     });
 });
-router.get('/add', (req, res, next) => {
-    res.render('contacts/add');
-});
 
-// router.post('/add', )
-router.post('/add', bodyParser.urlencoded({ extended: false }), (req, res, next) => {
+router.post('/', bodyParser.json(), (req, res, next) => {
 
     var contact = new Contact(req.body);
     contact.save((err, contact) => {
@@ -26,10 +22,12 @@ router.post('/add', bodyParser.urlencoded({ extended: false }), (req, res, next)
             return next(err);
         }
 
-        res.redirect('/contacts/' + contact.id);
+        res.statusCode = 201;
+        res.json(contact);
     });
 
 });
+
 router.get('/:id', (req, res, next) => {
     Contact.findById(req.params.id, (err, contact) => {
         if (err) {
@@ -41,11 +39,9 @@ router.get('/:id', (req, res, next) => {
             return next();
         }
 
-        res.render('contacts/show', {contact});
+        res.json(contact);
     });
 });
-
-
 
 
 module.exports = router;

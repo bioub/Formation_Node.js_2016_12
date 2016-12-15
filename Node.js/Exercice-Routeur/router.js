@@ -4,7 +4,7 @@ module.exports.dispatch = (req, res) => {
     let url = req.url;
     let method = req.method;
 
-    var match = routes.find(route => route.url === url && route.method === method);
+    let match = routes.find(route => route.url === url && route.method === method);
 
     if (!match) {
         res.statusCode = 404;

@@ -27,7 +27,7 @@ server.get('/contacts/:id', (req, res, next) => {
 
 server.use((req, res, next) => {
     res.statusCode = 404;
-    res.send('<h2></h2>');
+    res.send('<h2>404 Not Found</h2>');
 });
 
 server.listen(8080, () => {
